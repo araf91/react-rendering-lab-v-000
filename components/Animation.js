@@ -1,6 +1,6 @@
-import React from 'react';
+const React = require('react');
 
-export default class Animation extends React.Component {
+class Animation extends React.Component {
 
   constructor(props) {
     super(props);
@@ -9,6 +9,10 @@ export default class Animation extends React.Component {
     };
     this.showLoadingBar = this.showLoadingBar.bind(this);
     this.getNewCat = this.getNewCat.bind(this);
+  }
+
+  componentWillUpdate() {
+    this.showLoadingBar()
   }
 
   getNewCat() {
@@ -23,9 +27,12 @@ export default class Animation extends React.Component {
   }
 
   showLoadingBar() {
+    debugger
     const progressBar = document.getElementById('progress-bar');
     progressBar.className = 'off on';
-    setTimeout(() => progressBar.className = 'off', 1100);
+    setTimeout(function() {
+      progressBar.className = 'on', 5200
+    });
   }
 
   render() {
@@ -37,3 +44,5 @@ export default class Animation extends React.Component {
     )
   }
 }
+
+module.exports = Animation;
